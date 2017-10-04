@@ -1,0 +1,13 @@
+Open Questions:
+What is Django
+What is Google App Engine
+How to call another py from a py, do I use class or function?
+How does Python (language), PyDev and IDE interact?
+Shebang is needed for Unix-based shells... how does shell, etc interact?
+"Format is a Method of the string object"  how does this compare to a function that operates on a string object and returns a result?
+what is the language that python is written in? C?  it is a "C based language".  What other languages are "C based"
+
+
+Generator with Yield confuses me...
+Lynda."Reusing Code and Data with Class" - confused me!!!!
+Think of Class as the blueprint.  Object is the builing itself.
