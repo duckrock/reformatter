@@ -8,16 +8,18 @@ ChordURL = str(input("Hello! What URL has the song you want to reformat? (put sp
 #ChordURL = "https://tabs.ultimate-guitar.com/w/willie_nelson/all_of_me_crd.htm"
 #ChordURL = "https://tabs.ultimate-guitar.com/s/sturgill_simpson/turtles_all_the_way_down_crd.htm"
 #ChordURL = "https://www.cowboylyrics.com/tabs/simpson-sturgill/keep-it-between-the-lines-31497.html"
-ChordURL = "https://tabs.ultimate-guitar.com/c/creedence_clearwater_revival/have_you_ever_seen_the_rain_crd.htm"
+#ChordURL = "https://tabs.ultimate-guitar.com/c/creedence_clearwater_revival/have_you_ever_seen_the_rain_crd.htm"
 #dev hardcode--------------------------------------------------------------------------
 UltimateGuitar = 'https://tabs.ultimate-guitar.com'
 CowboyLyrics = 'https://www.cowboylyrics.com'
+CountryTabs = 'http://www.countrytabs.com'
 print (ChordURL)
 print ("Thanks, let me see what I can do")
 page = urlopen(ChordURL) # query the website and return the html to the variable ‘page’
 # parse the html using beautiful soap and store in variable `soup`
 soup = BeautifulSoup(page,"html.parser")
 WebSongTitle=soup.title.string
+WebSongTitle = WebSongTitle.title()
 #print(ChordPage[:32])
 #if any([st in ChordURL for st in UltimateGuitar]):
 if ChordURL[:32] == UltimateGuitar:

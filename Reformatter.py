@@ -6,17 +6,18 @@ table = str.maketrans(dict.fromkeys('[\'\"]')) #Create a translate table to remo
 SongStart = 0 #Hardcoded start of the chords line, usually the Lyrics are one line later
 SpecialLine = ['Intro','Verse','VERSE','Chorus','CHORUS','Refrain','REFRAIN','Instrumental','INSTRUMENTAL','Solo','Verse 1','Verse 2','Verse 3','Outro'] #used to check for special song lines
 TitleLine = [' - ', 'Capo'] #usually this is when there is an embedded title, just print it
-SomeChords = ['A  ','[A]','F#m ','G  ','A  ','F  ','E  ','Am7  ','C  ','D7  '] #used to check for a succession of chords
+SomeChords = ['A  ','[A]','F#m ','G  ','A  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/'] #used to check for a succession of chords
 #######################################################
-def line_prepender(filename, line):
+def line_prepender(filename, line): #used later to prepend the song's title and URL, after processing is over
     with open(filename, 'r+') as f:
         content = f.read()
         f.seek(0, 0)
         f.write(line.rstrip('\r\n') + '\n' + content)
 #######################################################
-print(songlist)
+print(songlist) #debug
 WrkStr5 = str(songlist[SongStart]).translate(table) #Get the first line of the song
-file=open("ReformattedSong.txt","w") # Open a file
+NewFileName = WebSongTitle[:20]+".txt" #use first 10 chars of song title for filename.
+file=open(NewFileName,"w") # Open a file for output called the truncated name of the song
 while SongStart+1<len(songlist):  # go to the end of the list of list elements
     WrkStr1 = str(songlist[SongStart]).translate(table) #first line of text, should be chords above lyrics
     WrkStr2 = str(songlist[SongStart+1]).translate(table) #second line of text, should be lyrics
@@ -28,17 +29,18 @@ while SongStart+1<len(songlist):  # go to the end of the list of list elements
         WrkStr2 = WrkStr2.ljust(ChordLineLen) #force the lyric line to be as long as the chordline
     if ChordLineLen > 0 : #this must be a nonblank row of text
         # Check the first string and see if it is special
-        if any([st in WrkStr1 for st in TitleLine]):#are you looking like a title?  with a hyphen?
-            #print(WrkStr1.strip())
-            file.write(WrkStr1.strip() + '\n')  # If there is a title, add it to the file first.
+        if any([st in WrkStr1 for st in SpecialLine]): # are you a chorus, verse, etc? then just write/print you
+            #print('['+WrkStr1.strip()+']','spec line wrk1')
+            file.write('['+WrkStr1.strip()+']'+'\n')  # If there is a special section, write it in
             SongStart = SongStart + 1  # advance the line checker
-        elif any([st in WrkStr1 for st in SpecialLine]): # are you a chorus, verse, etc?
-            #print('['+WrkStr1.strip()+']')
-            file.write('\n')  # If there is a special section, skip a line in the file
-            SongStart = SongStart + 1  # advance the line checker
-        elif any([st in WrkStr1 for st in SomeChords]) and any([st in WrkStr2 for st in SpecialLine]):
-            #print('['+WrkStr1.strip()+']')
+        elif any([st in WrkStr1 for st in SomeChords]) and any([st in WrkStr2 for st in SpecialLine]): #are you chords on top of a special line?
+            #print('['+WrkStr1.strip()+']','chords line 1, spec line 2')
             file.write('['+WrkStr1.strip()+']\n')  # If there is a title, add it to the file first.
+            SongStart = SongStart + 1  # advance the line checker
+        elif any([st in WrkStr1 for st in SpecialLine]) or any([st in WrkStr2 for st in SpecialLine]) or any([st in WrkStr2 for st in SomeChords]):
+            #print('#you are a special line on line 1 or 2 or you are a chord line on line 2?')#you are NOT a special line on line one nor chord on line one or line 2?
+            #print(WrkStr1.strip())
+            #file.write(WrkStr1.strip() + '\n')  # If there is a title, add it to the file first.
             SongStart = SongStart + 1  # advance the line checker
         else:
             #####################################################################
@@ -85,7 +87,8 @@ while SongStart+1<len(songlist):  # go to the end of the list of list elements
     else:
         SongStart=SongStart+1
 file.close()
-WebSongTitle = WebSongTitle[:-22].title()+'\n'+ChordURL
-line_prepender('ReformattedSong.txt',WebSongTitle)
 
-print("I created a file called ReformattedSong.txt")
+WebSongTitle = WebSongTitle[:-22].title()+'\n'+ChordURL
+line_prepender(NewFileName,WebSongTitle)
+
+print("I created a file called "+NewFileName+".txt")
