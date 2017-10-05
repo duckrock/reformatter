@@ -4,9 +4,8 @@ exec(open('FileToListOfLists.py').read())
 table = str.maketrans(dict.fromkeys('[\'\"]')) #Create a translate table to remove extraneous list characters like [,],'
 #########################################################
 SongStart = 0 #Hardcoded start of the chords line, usually the Lyrics are one line later
-SpecialLine = ['Intro','Verse','VERSE','Chorus','CHORUS','Refrain','REFRAIN','Instrumental','INSTRUMENTAL','Solo','Verse 1','Verse 2','Verse 3','Outro'] #used to check for special song lines
-TitleLine = [' - ', 'Capo'] #usually this is when there is an embedded title, just print it
-SomeChords = ['A  ','[A]','F#m ','G  ','A  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/'] #used to check for a succession of chords
+SpecialLine = ['Capo','CAPO','Intro','Verse','VERSE','Chorus','CHORUS','Refrain','REFRAIN','Instrumental','INSTRUMENTAL','Solo','Verse 1','Verse 2','Verse 3','Outro'] #used to check for special song lines
+SomeChords = ['A  ','[A]','F#m ','G  ','A  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/','Am/','G ','C '] #used to check for a succession of chords
 #######################################################
 def line_prepender(filename, line): #used later to prepend the song's title and URL, after processing is over
     with open(filename, 'r+') as f:
@@ -33,10 +32,11 @@ while SongStart+1<len(songlist):  # go to the end of the list of list elements
             #print('['+WrkStr1.strip()+']','spec line wrk1')
             file.write('['+WrkStr1.strip()+']'+'\n')  # If there is a special section, write it in
             SongStart = SongStart + 1  # advance the line checker
-        elif any([st in WrkStr1 for st in SomeChords]) and any([st in WrkStr2 for st in SpecialLine]): #are you chords on top of a special line?
-            #print('['+WrkStr1.strip()+']','chords line 1, spec line 2')
-            file.write('['+WrkStr1.strip()+']\n')  # If there is a title, add it to the file first.
-            SongStart = SongStart + 1  # advance the line checker
+        elif any([st in WrkStr1 for st in SomeChords]) and (any([st in WrkStr2 for st in SpecialLine]) or any([st in WrkStr2 for st in SomeChords])):
+            #are you chords on top of a special line or more chords?
+            file.write('[' + WrkStr1 + ']\n')
+            file.write('[' + WrkStr2 + ']\n')
+            SongStart = SongStart + 2
         elif any([st in WrkStr1 for st in SpecialLine]) or any([st in WrkStr2 for st in SpecialLine]) or any([st in WrkStr2 for st in SomeChords]):
             #print('#you are a special line on line 1 or 2 or you are a chord line on line 2?')#you are NOT a special line on line one nor chord on line one or line 2?
             #print(WrkStr1.strip())
@@ -44,16 +44,15 @@ while SongStart+1<len(songlist):  # go to the end of the list of list elements
             SongStart = SongStart + 1  # advance the line checker
         else:
             #####################################################################
-            y=80 ###This is the last position
+            y=80 ###This is the last position of a line
             PartialChord=""
-            if any([st in WrkStr2 for st in SomeChords]):
-            #this checks for multiple lines of chords,
+            if any([st in WrkStr2 for st in SomeChords]) and any([st in WrkStr1 for st in SomeChords]): #this checks for multiple lines of chords,
                 #print('[' + WrkStr1 + ']')
                 #print('[' + WrkStr2 + ']')
                 file.write('[' + WrkStr1 + ']\n')
                 file.write('[' + WrkStr2 + ']\n')
                 SongStart = SongStart + 2
-            elif (any([st in WrkStr1 for st in SomeChords]) and WrkStr2.rstrip() == ""):
+            elif (any([st in WrkStr1 for st in SomeChords]) and WrkStr2.rstrip() == ""): #chords at the bottom of the page?
                 #print('[' + WrkStr1 + ']')
                 file.write('[' + WrkStr1 + ']\n')
                 SongStart = SongStart + 2
@@ -91,4 +90,4 @@ file.close()
 WebSongTitle = WebSongTitle[:-22].title()+'\n'+ChordURL
 line_prepender(NewFileName,WebSongTitle)
 
-print("I created a file called "+NewFileName+".txt")
+print("I created a file called "+NewFileName)
