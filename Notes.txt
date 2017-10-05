@@ -11,3 +11,8 @@ what is the language that python is written in? C?  it is a "C based language". 
 Generator with Yield confuses me...
 Lynda."Reusing Code and Data with Class" - confused me!!!!
 Think of Class as the blueprint.  Object is the builing itself.
+
+Python is in one directory: D:\Users\750005078\AppData\Local\Programs\Python\Python36-32
+My stuff is in another: D:\Users\750005078\Documents\Python
+-it is a pain to go to the python scripts directory to run pip, should it be in a path?
+-should these be in same place?
