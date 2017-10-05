@@ -8,9 +8,15 @@ SpecialLine = ['Intro','Verse','VERSE','Chorus','CHORUS','Refrain','REFRAIN','In
 TitleLine = [' - ', 'Capo'] #usually this is when there is an embedded title, just print it
 SomeChords = ['A  ','[A]','F#m ','G  ','A  ','F  ','E  ','Am7  ','C  ','D7  '] #used to check for a succession of chords
 #######################################################
+def line_prepender(filename, line):
+    with open(filename, 'r+') as f:
+        content = f.read()
+        f.seek(0, 0)
+        f.write(line.rstrip('\r\n') + '\n' + content)
+#######################################################
 print(songlist)
 WrkStr5 = str(songlist[SongStart]).translate(table) #Get the first line of the song
-file=open("OutputFile.txt","w") # Open a file
+file=open("ReformattedSong.txt","w") # Open a file
 while SongStart+1<len(songlist):  # go to the end of the list of list elements
     WrkStr1 = str(songlist[SongStart]).translate(table) #first line of text, should be chords above lyrics
     WrkStr2 = str(songlist[SongStart+1]).translate(table) #second line of text, should be lyrics
@@ -23,15 +29,15 @@ while SongStart+1<len(songlist):  # go to the end of the list of list elements
     if ChordLineLen > 0 : #this must be a nonblank row of text
         # Check the first string and see if it is special
         if any([st in WrkStr1 for st in TitleLine]):#are you looking like a title?  with a hyphen?
-            print(WrkStr1.strip())
+            #print(WrkStr1.strip())
             file.write(WrkStr1.strip() + '\n')  # If there is a title, add it to the file first.
             SongStart = SongStart + 1  # advance the line checker
         elif any([st in WrkStr1 for st in SpecialLine]): # are you a chorus, verse, etc?
             #print('['+WrkStr1.strip()+']')
-            #file.write('['+WrkStr1.strip()+']\n')  # If there is a title, add it to the file first.
+            file.write('\n')  # If there is a special section, skip a line in the file
             SongStart = SongStart + 1  # advance the line checker
         elif any([st in WrkStr1 for st in SomeChords]) and any([st in WrkStr2 for st in SpecialLine]):
-            print('['+WrkStr1.strip()+']')
+            #print('['+WrkStr1.strip()+']')
             file.write('['+WrkStr1.strip()+']\n')  # If there is a title, add it to the file first.
             SongStart = SongStart + 1  # advance the line checker
         else:
@@ -40,13 +46,13 @@ while SongStart+1<len(songlist):  # go to the end of the list of list elements
             PartialChord=""
             if any([st in WrkStr2 for st in SomeChords]):
             #this checks for multiple lines of chords,
-                print('[' + WrkStr1 + ']')
-                print('[' + WrkStr2 + ']')
+                #print('[' + WrkStr1 + ']')
+                #print('[' + WrkStr2 + ']')
                 file.write('[' + WrkStr1 + ']\n')
                 file.write('[' + WrkStr2 + ']\n')
                 SongStart = SongStart + 2
             elif (any([st in WrkStr1 for st in SomeChords]) and WrkStr2.rstrip() == ""):
-                print('[' + WrkStr1 + ']')
+                #print('[' + WrkStr1 + ']')
                 file.write('[' + WrkStr1 + ']\n')
                 SongStart = SongStart + 2
             else: #we do NOT have an instrumental or solo
@@ -73,8 +79,13 @@ while SongStart+1<len(songlist):  # go to the end of the list of list elements
                             break
                     WrkStr1 = WrkStr1[:y]# new chord string w/o the rightmost chord, stopping just there
                     WrkStr2 = WrkStr5 #new lyric string with the rightmost chord(s) now embedded
-                print (WrkStr5)
+                #print (WrkStr5)
                 file.write(WrkStr5+ '\n')
                 SongStart=SongStart+2
     else:
         SongStart=SongStart+1
+file.close()
+WebSongTitle = WebSongTitle[:-22].title()+'\n'+ChordURL
+line_prepender('ReformattedSong.txt',WebSongTitle)
+
+print("I created a file called ReformattedSong.txt")

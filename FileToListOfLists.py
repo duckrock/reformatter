@@ -9,7 +9,7 @@ def songlol(songfile,songlist):  # Open the file back up and read the contents i
          fh.close() #close the file
 songlist = [] # Instantiate variable songlist as a list
 #----------------------------------------------------
-songlol('SongFile.txt', songlist) #call the function to put the file into a list of lists
+songlol('UnformattedSong.txt', songlist) #call the function to put the file into a list of lists
 #Remove blank lines
 songlist = [x for x in songlist if x != ['']]
-print(songlist)
+#print(songlist)
