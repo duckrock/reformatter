@@ -6,7 +6,7 @@ table = str.maketrans(dict.fromkeys('[\'\"]')) #Create a translate table to remo
 SongStart = 0 #Hardcoded start of the chords line, usually the Lyrics are one line later
 SpecialLine = ['Intro','Verse','Chorus','Refrain','Instrumental','Solo','Verse 1','Verse 2','Verse 3','Outro'] #used to check for special song lines
 TitleLine = ['Capo ']
-SomeChords = ['A  ','[A]','F#m ','G  ','A  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/','Am/','G ','C '] #used to check for a succession of chords
+SomeChords = ['A  ','[A]','F#m ','G  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/','Am/','G ','C ','Em','Am','Bm','C','D','G'] #used to check for a succession of chords
 #######################################################
 def line_prepender(filename, line): #used later to prepend the song's title and URL, after processing is over
     with open(filename, 'r+') as f:
@@ -19,7 +19,7 @@ CapoTitle = ""
 WrkStr5 = str(songlist[SongStart]).translate(table) #Get the first line of the song
 NewFileName = WebSongTitle[:20]+".txt" #use first 10 chars of song title for filename.
 file=open(NewFileName,"w") # Open a file for output called the truncated name of the song
-while SongStart+1<len(songlist):  # go to the end of the list of list elements
+while SongStart+1<len(songlist):  # start at the first in the list, then move forward
     WrkStr1 = str(songlist[SongStart]).translate(table) #first line of text, should be chords above lyrics
     WrkStr2 = str(songlist[SongStart+1]).translate(table) #second line of text, should be lyrics
     #print(WrkStr1,'raw1')
@@ -28,19 +28,28 @@ while SongStart+1<len(songlist):  # go to the end of the list of list elements
     LyricLineLen = len(WrkStr2.rstrip()) #need this in the case the lyric line is shorter than the chordline
     if ChordLineLen>LyricLineLen:
         WrkStr2 = WrkStr2.ljust(ChordLineLen) #force the lyric line to be as long as the chordline
-    if ChordLineLen > 0 : #this must be a nonblank row of text
+    if ChordLineLen > 0 : #must be a nonblank row of text, otherwise go to the next line
         # Check the first string and see if it is special
-        if any([st in WrkStr1.title() for st in TitleLine]):
+        if any([st in WrkStr1.title() for st in TitleLine]): # is capo in the first line?
             CapoTitle = WrkStr1.title()
             SongStart = SongStart + 1
-        elif any([st in WrkStr1.title() for st in SpecialLine]): # are you a chorus, verse, etc? then just write/print you
+        elif any([st in WrkStr2.title() for st in TitleLine]): # is capo in the second line?
+            CapoTitle = WrkStr2.title()
+            SongStart = SongStart + 2
+        elif any([st in WrkStr1.title() for st in SpecialLine]) or not any([st in WrkStr1 for st in SomeChords]):
+            #no chords at all, just print it.): or are you a chorus, verse, etc? then just write/print you
             #print('['+WrkStr1.strip()+']','spec line wrk1')
             file.write('['+WrkStr1.strip()+']'+'\n')  # If there is a special section, write it in
             SongStart = SongStart + 1  # advance the line checker
-        elif any([st in WrkStr1 for st in SomeChords]) and (any([st in WrkStr2.title() for st in SpecialLine]) or any([st in WrkStr2 for st in SomeChords])):
-            #are you chords on top of a special line or more chords?
-            file.write('[' + WrkStr1 + ']')
-            file.write('[' + WrkStr2 + ']\n')
+        elif any([st in WrkStr1 for st in SomeChords]) and any([st in WrkStr2 for st in SomeChords]):
+            #are you chords on top  more chords?
+            file.write('[' + WrkStr1.strip() + ']')
+            file.write('[' + WrkStr2.strip() + ']\n')
+            SongStart = SongStart + 2
+        elif any([st in WrkStr1 for st in SomeChords]) and any([st in WrkStr2.title() for st in SpecialLine]):
+            #are you chords on top of a special line ?
+            file.write('[' + WrkStr1.strip() + ']\n')
+            file.write('[' + WrkStr2.strip() + ']\n')
             SongStart = SongStart + 2
         elif any([st in WrkStr1.title() for st in SpecialLine]) or any([st in WrkStr2.title() for st in SpecialLine]) or any([st in WrkStr2 for st in SomeChords]):
             #print('#you are a special line on line 1 or 2 or you are a chord line on line 2?')#you are NOT a special line on line one nor chord on line one or line 2?
