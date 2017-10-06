@@ -6,7 +6,7 @@ table = str.maketrans(dict.fromkeys('[\'\"]')) #Create a translate table to remo
 SongStart = 0 #Hardcoded start of the chords line, usually the Lyrics are one line later
 SpecialLine = ['Intro','Verse','Chorus','Refrain','Instrumental','Solo','Verse 1','Verse 2','Verse 3','Outro'] #used to check for special song lines
 TitleLine = ['Capo ']
-SomeChords = ['A  ','[A]','F#m ','G  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/','Am/','G ','C ','Em','Am','Bm','C','D','G'] #used to check for a succession of chords
+SomeChords = ['A  ','[A]','F#m ','G  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/','Am/','G ','C ','Em','Am','Bm','C','D','G','E','B7'] #used to check for a succession of chords
 #######################################################
 def line_prepender(filename, line): #used later to prepend the song's title and URL, after processing is over
     with open(filename, 'r+') as f:
