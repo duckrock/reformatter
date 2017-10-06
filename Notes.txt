@@ -1,5 +1,6 @@
 Open Questions:
 What is Django
+What is flask? heroku?
 What is Google App Engine
 How to call another py from a py, do I use class or function?
 How does Python (language), PyDev and IDE interact?
@@ -16,3 +17,8 @@ Python is in one directory: D:\Users\750005078\AppData\Local\Programs\Python\Pyt
 My stuff is in another: D:\Users\750005078\Documents\Python
 -it is a pain to go to the python scripts directory to run pip, should it be in a path?
 -should these be in same place?
+
+
+Install python 3.x from Python.org and add it to path
+Install Pycharm community edition
+pip in scripts
