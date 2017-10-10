@@ -4,9 +4,10 @@ exec(open('FileToListOfLists.py').read())
 table = str.maketrans(dict.fromkeys('[\'\"]')) #Create a translate table to remove extraneous list characters like [,],'
 #########################################################
 SongStart = 0 #Hardcoded start of the chords line, usually the Lyrics are one line later
-SpecialLine = ['Intro','Verse','Chorus','Refrain','Instrumental','Solo','Verse 1','Verse 2','Verse 3','Outro'] #used to check for special song lines
+SpecialLine = ['Intro','Verse','Chorus','Refrain','Instrumental','Solo','Verse 1','Verse 2','Verse 3','Outro','Bridge'] #used to check for special song lines
 TitleLine = ['Capo ']
-SomeChords = ['A  ','[A]','F#m ','G  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/','Am/','G ','C ','Em','Am','Bm','C','D','G','E','B7'] #used to check for a succession of chords
+SomeChords = ['A  ','[A] ','F#m ','G  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/','Am/','G ','C ','Em','Am ','Bm','C ','D ','G ','E ','B7 '] #used to check for a succession of chords
+SingleChordLine = ['A','B','C','D','E','F','G','Am']
 #######################################################
 def line_prepender(filename, line): #used later to prepend the song's title and URL, after processing is over
     with open(filename, 'r+') as f:
@@ -15,7 +16,7 @@ def line_prepender(filename, line): #used later to prepend the song's title and 
         f.write(line.rstrip('\r\n') + '\n' + content)
 #######################################################
 print(songlist) #debug
-CapoTitle = ""
+CapoTitle = "No Capo"
 WrkStr5 = str(songlist[SongStart]).translate(table) #Get the first line of the song
 NewFileName = WebSongTitle[:20]+".txt" #use first 10 chars of song title for filename.
 file=open(NewFileName,"w") # Open a file for output called the truncated name of the song
@@ -36,16 +37,15 @@ while SongStart+1<len(songlist):  # start at the first in the list, then move fo
         elif any([st in WrkStr2.title() for st in TitleLine]): # is capo in the second line?
             CapoTitle = WrkStr2.title()
             SongStart = SongStart + 2
-        elif any([st in WrkStr1.title() for st in SpecialLine]) or not any([st in WrkStr1 for st in SomeChords]):
-            #no chords at all, just print it.): or are you a chorus, verse, etc? then just write/print you
-            #print('['+WrkStr1.strip()+']','spec line wrk1')
-            file.write('['+WrkStr1.strip()+']'+'\n')  # If there is a special section, write it in
+        elif any([st in WrkStr1.title() for st in SpecialLine]):# or not any([st in WrkStr1 for st in SomeChords]):
+            # are you a chorus, verse, etc? OR are you no chords at all? then just write/print you with brackets
+            file.write('['+WrkStr1.strip()+']'+'\n')
             SongStart = SongStart + 1  # advance the line checker
         elif any([st in WrkStr1 for st in SomeChords]) and any([st in WrkStr2 for st in SomeChords]):
             #are you chords on top  more chords?
             file.write('[' + WrkStr1.strip() + ']')
             file.write('[' + WrkStr2.strip() + ']\n')
-            SongStart = SongStart + 2
+            SongStart = SongStart + 1
         elif any([st in WrkStr1 for st in SomeChords]) and any([st in WrkStr2.title() for st in SpecialLine]):
             #are you chords on top of a special line ?
             file.write('[' + WrkStr1.strip() + ']\n')
@@ -54,8 +54,9 @@ while SongStart+1<len(songlist):  # start at the first in the list, then move fo
         elif any([st in WrkStr1.title() for st in SpecialLine]) or any([st in WrkStr2.title() for st in SpecialLine]) or any([st in WrkStr2 for st in SomeChords]):
             #print('#you are a special line on line 1 or 2 or you are a chord line on line 2?')#you are NOT a special line on line one nor chord on line one or line 2?
             #print(WrkStr1.strip())
-            #file.write(WrkStr1.strip() + '\n')  # If there is a title, add it to the file first.
+            file.write(WrkStr1.strip() + '\n')  # If there is a title, add it to the file first.
             SongStart = SongStart + 1  # advance the line checker
+            #print('in elif6')
         else:
             #####################################################################
             y=80 ###This is the last position of a line

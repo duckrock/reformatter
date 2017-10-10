@@ -22,3 +22,5 @@ My stuff is in another: D:\Users\750005078\Documents\Python
 Install python 3.x from Python.org and add it to path
 Install Pycharm community edition
 pip in scripts
+need bs4, beautifulsoup
+pip install beautifulsoup4
