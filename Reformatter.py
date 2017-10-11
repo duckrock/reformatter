@@ -18,7 +18,7 @@ def line_prepender(filename, line): #used later to prepend the song's title and 
 print(songlist) #debug
 CapoTitle = "No Capo"
 WrkStr5 = str(songlist[SongStart]).translate(table) #Get the first line of the song
-NewFileName = WebSongTitle[:20]+".txt" #use first 10 chars of song title for filename.
+NewFileName = '_'+WebSongTitle[:20]+".txt" #use first 10 chars of song title for filename.
 file=open(NewFileName,"w") # Open a file for output called the truncated name of the song
 while SongStart+1<len(songlist):  # start at the first in the list, then move forward
     WrkStr1 = str(songlist[SongStart]).translate(table) #first line of text, should be chords above lyrics

@@ -9,6 +9,8 @@ ChordURL = str(input("Hello! What URL has the song you want to reformat? (put sp
 #ChordURL = "https://tabs.ultimate-guitar.com/s/sturgill_simpson/turtles_all_the_way_down_crd.htm"
 #ChordURL = "https://www.cowboylyrics.com/tabs/simpson-sturgill/keep-it-between-the-lines-31497.html"
 #ChordURL = "https://tabs.ultimate-guitar.com/c/creedence_clearwater_revival/have_you_ever_seen_the_rain_crd.htm"
+#ChordURL = 'https://tabs.ultimate-guitar.com/c/conor_oberst/till_st_dymphna_kicks_us_out_crd.htm'
+#ChordURL =
 #dev hardcode--------------------------------------------------------------------------
 UltimateGuitar = 'https://tabs.ultimate-guitar.com'
 CowboyLyrics = 'https://www.cowboylyrics.com'
