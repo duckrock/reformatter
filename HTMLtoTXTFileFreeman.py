@@ -5,7 +5,7 @@ from urllib.request import urlopen
 ChordURL = str(input("Hello! What URL has the song you want to reformat? (put space after and click enter)\n"))
 # specify the url
 #dev hardcode------------------------------------------------------------------------
-#ChordURL = "https://tabs.ultimate-guitar.com/w/willie_nelson/all_of_me_crd.htm"
+ChordURL = "https://tabs.ultimate-guitar.com/w/willie_nelson/all_of_me_crd.htm"
 #ChordURL = "https://tabs.ultimate-guitar.com/s/sturgill_simpson/turtles_all_the_way_down_crd.htm"
 #ChordURL = "https://www.cowboylyrics.com/tabs/simpson-sturgill/keep-it-between-the-lines-31497.html"
 #ChordURL = "https://tabs.ultimate-guitar.com/c/creedence_clearwater_revival/have_you_ever_seen_the_rain_crd.htm"
