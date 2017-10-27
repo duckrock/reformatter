@@ -1,4 +1,4 @@
-#Tester
+#Tester for multiple URLs for regression testing
 global ChordURL
 table = str.maketrans(dict.fromkeys('[\'\"]'))
 fh = open("TestURLsFreeman.txt", "r")
