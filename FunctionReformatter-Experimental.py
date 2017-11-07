@@ -8,28 +8,29 @@ CountryTabs = 'http://www.countrytabs.com'
 ###################################################################################################################
 
 def main():
-    #GetChordURL() - # Comment this out for testing and run TesterFreeman for full regression test.
+    GetChordURL() # Comment this out for testing and run TesterFreeman for full regression test.
+    #if ChordURL[:4] == CowboyLyrics[:4]: #Input is a URL, not text, so convert it to text
     HTMLGetWebSongTitle(ChordURL)
     HTMLToTextFunc(ChordURL)
+    #else:
+    #    GetTextInput()
+    #    WebSongTitle = 'Text Input'
     FileToLOL('UnformattedSong.txt')  # call the function to put the file into a list of lists
-    # Remove blank lines
     ReformatterFunc(SongList, WebSongTitle, ChordURL)
     LinePrepender(NewFileName, WebSongTitle)
     print("I created a file called " + NewFileName)
 #######################################################
 def GetChordURL():#Ask for Chord URL or hardcode for testing
     global ChordURL
-    ChordURL = str(input("Hello! What URL has the song you want to reformat? (put space after and click enter)\n"))
-    #specify the url
-    #dev hardcode------------------------------------------------------------------------
-    ChordURL = "https://tabs.ultimate-guitar.com/w/willie_nelson/all_of_me_crd.htm"
-    #ChordURL = "https://tabs.ultimate-guitar.com/s/sturgill_simpson/turtles_all_the_way_down_crd.htm"
-    #ChordURL = "https://www.cowboylyrics.com/tabs/simpson-sturgill/keep-it-between-the-lines-31497.html"
-    #ChordURL = "https://tabs.ultimate-guitar.com/c/creedence_clearwater_revival/have_you_ever_seen_the_rain_crd.htm"
-    #ChordURL = 'https://tabs.ultimate-guitar.com/c/conor_oberst/till_st_dymphna_kicks_us_out_crd.htm'
-    #ChordURL =
-    #dev hardcode--------------------------------------------------------------------------
-    return ChordURL
+    ChordURL = str(input("Hello! What URL or Text has the song you want to reformat? (put space after and click enter)\n"))
+########################################################
+def GetTextInput():#Not used yet, used to accept text instead of a URL
+    #pass
+    f = open("UnformattedSong.txt", "w+")
+    # write the song into the file
+    f.write(ChordURL)
+    f.close()
+    print("I created a file called UnformattedSong.txt")
 #######################################################
 def HTMLGetWebSongTitle(ChordURL):#From ChordURL, Get the Song Title
     global WebSongTitle
@@ -85,10 +86,12 @@ def ReformatterFunc(SongList,WebSongTitle,ChordURL):
     table = str.maketrans(dict.fromkeys('[\'\"]')) #Create a translate table to remove extraneous list characters like [,],'
     #########################################################
     SongStart = 0 #Hardcoded start of the chords line, usually the Lyrics are one line later
-    SpecialLine = ['Intro','Verse','Chorus','Refrain','Instrumental','Solo','Verse 1','Verse 2','Verse 3','Outro','Bridge','Fade Finish'] #used to check for special song lines
+    SpecialLine = ['Intro','Verse','Chorus','Refrain','Instrumental','Solo','Verse 1','Verse 2','Verse 3','Outro','Bridge','Fade Finish','Pause...'] #used to check for special song lines
     TitleLine = ['Capo ']
-    SomeChords = ['A  ','[A] ','F#m ','G  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/','Am/','G ','C ','Em','Am ','Bm','C ','D ','G ','E ','B7 '] #used to check for a succession of chords
+    SomeChords = ['A  ','[A] ','F#m ','G  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/',
+                  'Am/','G ','C ','Em','Am ','Bm','C ','D ','G ','E ','B7 ','F5','E5','F#5','G5','Bb5','C5'] #used to check for a succession of chords
     SingleChordLine = ['A','B','C','D','E','F','G','Am']
+    ThrowawayLine = ['---','|-',]
     CapoTitle = "No Capo"
     print(SongList) #debug
     NewFileName = '_' + WebSongTitle[:20] + ".txt"  # use first 10 chars of song title for filename.
@@ -107,40 +110,41 @@ def ReformatterFunc(SongList,WebSongTitle,ChordURL):
             # Check the first string and see if it is special
             if any([st in WrkStr1.title() for st in TitleLine]): # is capo or Capo (title) in the first line?
                 CapoTitle = WrkStr1.title()
-                SongStart = SongStart + 1
+                SongStart +=1
+            elif any([st in WrkStr1.strip() for st in ThrowawayLine]):
+                SongStart +=1
+            elif any([st in WrkStr2.strip() for st in ThrowawayLine]):
+                SongStart +=2
             elif any([st in WrkStr2.title() for st in TitleLine]): # is capo in the second line?
                 CapoTitle = WrkStr2.title()
-                SongStart = SongStart + 2
-            elif any([st in WrkStr1.title() for st in SpecialLine]):
-                # are you a chorus, verse, etc? then just print with brackets
+                SongStart +=2
+            elif any([st in WrkStr1.title() for st in SpecialLine]) or WrkStr1.title()==SingleChordLine:# are you a chorus, verse, etc? or single chord? then just print with brackets
                 file.write('['+WrkStr1.strip()+']'+'\n')
-                SongStart = SongStart + 1  # advance the line checker
-            elif any([st in WrkStr1 for st in SomeChords]) and any([st in WrkStr2 for st in SomeChords]):
-                #are you chords on top  more chords? you may be a solo!
+                SongStart +=1  # advance the line checker
+            elif (any([st in WrkStr1 for st in SomeChords]) or  WrkStr1.title()==SingleChordLine) and (any([st in WrkStr2 for st in SomeChords]) or WrkStr2.title()==SingleChordLine): #are you chord(s) on top  more chords? you may be a solo!
                 file.write('[' + WrkStr1.strip() + ']')
                 file.write('[' + WrkStr2.strip() + ']\n')
-                SongStart = SongStart + 2
+                SongStart +=2
             elif any([st in WrkStr1 for st in SomeChords]) and any([st in WrkStr2.title() for st in SpecialLine]):
                 #print('#are you chords on top of a special line ?')
                 file.write('[' + WrkStr1.strip() + ']\n')
                 file.write('[' + WrkStr2.strip() + ']\n')
                 #file.write('#are you chords on top of a special line ?')
-                SongStart = SongStart + 2
-            elif any([st in WrkStr1.title() for st in SpecialLine]):
-                #you are a special line on line 1, just print
+                SongStart +=2
+            elif any([st in WrkStr1.title() for st in SpecialLine]):#you are a special line on line 1, just print
                 file.write(WrkStr1.strip() + '\n')  # If there is a title, add it to the file first.
                 #file.write(WrkStr2.strip() + '\n')
-                SongStart = SongStart + 1  # advance the line checker
+                SongStart +=1  # advance the line checker
                 #print('in elif6')
             elif any([st in WrkStr2.title() for st in SpecialLine]):
                 file.write('[' + WrkStr2.title().strip() + ']\n')  # If there is a special line in stream2
-                SongStart = SongStart + 2  # advance the line checker
+                SongStart +=2  # advance the line checker
             elif any([st in WrkStr2 for st in SomeChords]):# If there is chords in stream2
                 file.write('[' + WrkStr2.strip() + ']\n')
-                SongStart = SongStart + 2  # advance the line checker
-            elif (any([st in WrkStr1 for st in SomeChords]) and WrkStr2.rstrip() == ""): #chords at the bottom of the page?
-                file.write('[' + WrkStr1 + ']\n')
-                SongStart = SongStart + 2
+                SongStart +=2  # advance the line checker
+            #elif (any([st in WrkStr1 for st in SomeChords]) and WrkStr2.rstrip() == ""): #chords at the bottom of the page?
+             #   file.write('[' + WrkStr1 + ']\n')
+              #  SongStart +=2
             else:############################################################################
                 y=80 ###This is the last position of a line
                 PartialChord=""
