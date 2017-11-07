@@ -2,10 +2,11 @@
 #Get the URL from the user and parse that HTML into usable text file before we begin the editing
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import os ###for filepath name
 UltimateGuitar = 'https://tabs.ultimate-guitar.com'
 CowboyLyrics = 'https://www.cowboylyrics.com'
 CountryTabs = 'http://www.countrytabs.com'
-###################################################################################################################
+############################################################
 
 def main():
     GetChordURL() # Comment this out for testing and run TesterFreeman for full regression test.
@@ -17,7 +18,7 @@ def main():
     #    WebSongTitle = 'Text Input'
     FileToLOL('UnformattedSong.txt')  # call the function to put the file into a list of lists
     ReformatterFunc(SongList, WebSongTitle, ChordURL)
-    LinePrepender(NewFileName, WebSongTitle)
+    LinePrepender(os.path.join(os.path.expanduser('~'), 'Documents\\GitHub\\reformatter\\Songs', NewFileName), WebSongTitle)
     print("I created a file called " + NewFileName)
 #######################################################
 def GetChordURL():#Ask for Chord URL or hardcode for testing
@@ -96,7 +97,8 @@ def ReformatterFunc(SongList,WebSongTitle,ChordURL):
     print(SongList) #debug
     NewFileName = '_' + WebSongTitle[:20] + ".txt"  # use first 10 chars of song title for filename.
     #WrkStr5 = str(SongList[SongStart]).translate(table) #Get the first line of the song
-    file=open(NewFileName,"w") # Open a file for output called the truncated name of the song
+    #os.path.join(os.path.expanduser('~'), 'Songs', NewFileName)
+    file=open(os.path.join(os.path.expanduser('~'), 'Documents\\GitHub\\reformatter\\Songs', NewFileName),"w") # Open a file for output called the truncated name of the song
     while SongStart+1<len(SongList):  # start at the first in the list, then move forward
         WrkStr1 = str(SongList[SongStart]).translate(table) #first line of text, should be chords above lyrics
         WrkStr2 = str(SongList[SongStart+1]).translate(table) #second line of text, should be lyrics
