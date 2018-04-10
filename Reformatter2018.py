@@ -51,7 +51,7 @@ def HTMLGetWebSongTitle(ChordURL):#From ChordURL, Get the Song Title
 def HTMLToTextFunc(ChordURL):#From ChordURL, get text from chord sites and load to TXT file
     page = urlopen(ChordURL)  # query the website and return the html to the variable ‘page’
     # parse the html using beautiful soap and store in variable `soup`
-    soup = BeautifulSoup(page, "html.parser")
+    soup = BeautifulSoup(page)#, "html.parser")
     print(ChordURL)
     #print(WebSongTitle)
     print("Thanks, let me see what I can do")
@@ -59,7 +59,9 @@ def HTMLToTextFunc(ChordURL):#From ChordURL, get text from chord sites and load 
     #if any([st in ChordURL for st in UltimateGuitar]):
     if ChordURL[:32] == UltimateGuitar:
         print ("Calling BeautifulSoup on Ultimate site")
-        SongToReformat = soup.find("pre class")
+        #SongToReformat = soup
+        SongToReformat = soup.content
+        ##############################################################################################
     elif ChordURL[:28] == CowboyLyrics:
         print("Calling BeautifulSoup on Cowboy site")
         SongToReformat = soup.pre.string
