@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="525e83f9-4ffe-403b-ae19-02d035d4c6ee" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="UnformattedSong.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UnformattedSong.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="113">
+              <caret line="114" column="22" lean-forward="false" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_2019_July_06 04-34 PM.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Songs/_2019_July_06 04-34 PM.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="16" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>= SongStart +</find>
+      <find>SingleChordLine</find>
+      <find>write</find>
+      <find>\n</find>
+      <find>class</find>
+      <find>titleline</find>
+      <find>capotitle</find>
+      <find>websongtitle</find>
+      <find>newfilename</find>
+      <find>print</find>
+      <find>singlechord</find>
+      <find>div</find>
+      <find>content</find>
+      <find>content:</find>
+      <find>buddha</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>+=</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/_Red Wine Mistakes My.txt" />
+        <option value="$PROJECT_DIR$/_Pina Colada Escape C.txt" />
+        <option value="$PROJECT_DIR$/Songs/_Mr Jones Chords By C.rtf" />
+        <option value="$PROJECT_DIR$/testbold.py" />
+        <option value="$PROJECT_DIR$/Songs/_This Is Why We Fight.txt" />
+        <option value="$PROJECT_DIR$/Songs/_Wichita Lineman Chor.txt" />
+        <option value="$PROJECT_DIR$/Songs/_St James Infirmary C.txt" />
+        <option value="$PROJECT_DIR$/Songs/_.txt" />
+        <option value="$PROJECT_DIR$/FunctionReformatter-Experimental.py" />
+        <option value="$PROJECT_DIR$/UploadToGoogleDriveApril.py" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/Notes.txt" />
+        <option value="$PROJECT_DIR$/Songs/_2018_April_09 01-15 PM.txt" />
+        <option value="$PROJECT_DIR$/Reformatter2018.py" />
+        <option value="$PROJECT_DIR$/UnformattedSong.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="314" />
+    <option name="y" value="99" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="reformatter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reformatter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reformatter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reformatter" type="462c0819:PsiDirectoryNode" />
+              <item name="Songs" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\John\Documents\GitHub\reformatter\Songs" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.Reformatter2018">
+    <configuration name="FunctionReformatter-Experimental" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="reformatter" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/FunctionReformatter-Experimental.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="Reformatter" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="reformatter" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Reformatter.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="Reformatter2018" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="reformatter" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Reformatter2018.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="TesterFreeman" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\John\AppData\Local\Programs\Python\Python36-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="reformatter" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TesterFreeman.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="testbold" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="reformatter" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testbold.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python.TesterFreeman" />
+      <item index="1" class="java.lang.String" itemvalue="Python.FunctionReformatter-Experimental" />
+      <item index="2" class="java.lang.String" itemvalue="Python.testbold" />
+      <item index="3" class="java.lang.String" itemvalue="Python.Reformatter" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Reformatter2018" />
+    </list>
+    <recent_temporary>
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.Reformatter2018" />
+        <item index="1" class="java.lang.String" itemvalue="Python.FunctionReformatter-Experimental" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Reformatter" />
+        <item index="3" class="java.lang.String" itemvalue="Python.testbold" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="525e83f9-4ffe-403b-ae19-02d035d4c6ee" name="Default" comment="" />
+      <created>1509145835693</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1509145835693</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2877013" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.61732286" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5590551" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>120</line>
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>122</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>124</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>127</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>132</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>137</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>140</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>144</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>146</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>149</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>161</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>165</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>162</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>163</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>164</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>169</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>129</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>130</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>131</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Reformatter2018.py</url>
+          <line>153</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="23" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_11 10-29 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_11 10-32 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_11 10-33 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_11 10-34 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_16 09-46 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_16 09-54 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_19 03-42 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_19 03-49 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_20 11-38 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_20 11-44 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_20 11-46 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_20 11-56 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_20 12-12 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_20 12-10 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_April_21 10-26 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_May_10 05-58 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_May_10 06-09 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_May_10 06-14 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_May_12 04-30 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_May_14 06-13 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_May_18 03-00 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_May_18 02-56 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_May_18 03-05 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_May_28 08-45 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_May_28 08-54 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_June_11 09-34 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_June_11 09-44 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_June_11 09-48 AM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_June_25 03-44 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_June_25 03-52 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_June_25 04-05 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_June_29 04-06 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_June_29 04-16 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_June_29 04-18 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_July_16 01-06 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_July_26 02-10 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_July_26 02-13 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_July_26 02-20 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_July_26 02-31 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_July_29 04-32 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_September_04 04-11 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_September_04 04-13 PM.txt" />
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_October_06 01-38 PM.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_October_26 04-18 PM.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="14" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Songs/_2018_September_27 08-05 PM.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="32" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Songs/_2019_March_09 12-01 PM.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="18" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Songs/_2019_March_29 03-50 PM.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="18" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Reformatter2018.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="161" column="92" lean-forward="false" selection-start-line="161" selection-start-column="92" selection-end-line="161" selection-end-column="92" />
+          <folding>
+            <element signature="e#111#140#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Songs/_2019_July_06 01-56 PM.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UnformattedSong.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="114" column="22" lean-forward="false" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Songs/_2019_July_06 04-34 PM.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="16" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
