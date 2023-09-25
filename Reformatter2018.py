@@ -1,6 +1,6 @@
 #John Freeman
 #Get the URL from the user and parse that HTML into usable text file before we begin the editing
-from bs4 import BeautifulSoup
+##from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import os ###for filepath name
 import datetime
@@ -25,7 +25,7 @@ def main():
     ###WebSongTitle = 'Text Input'
     FileToLOL('UnformattedSong.txt')  # call the function to put the file into a list of lists
     ReformatterFunc(SongList, WebSongTitle, ChordURL)
-    LinePrepender(os.path.join(os.path.expanduser('~'), 'Documents\\GitHub\\reformatter\\Songs', NewFileName), WebSongTitle)
+    LinePrepender(os.path.join(os.path.expanduser('~'), 'reformatter/Songs', NewFileName), WebSongTitle)
     print("I created a file called " + NewFileName)
 #######################################################
 def GetChordURL():#Ask for Chord URL or hardcode for testing
@@ -101,19 +101,19 @@ def ReformatterFunc(SongList,WebSongTitle,ChordURL):
     TitleLine = ['Capo ']
     SomeChords = ['A  ','[A] ','F#m ','G  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/',
                   'Am/','G ','C ','Em ','Am ','Bm','C ','D ','G ','E ','B7 ','F5','E5','F#5','G5','Bb5','C5'] #used to check for a succession of chords
-    SingleChordLine = ['A ','B ','C ','D ','E ','F ','G ','Am ']
+    SingleChordLine = ['A ','B ','C ','D ','E ','F ','G ','Am ','Em ','A7 ']
     ThrowawayLine = ['----','|-',]
     CapoTitle = "No Capo"
-    print(SongList) #debug
+   ### print(SongList) #debug
     NewFileName = '_' + WebSongTitle[:20] + str(now) + ".txt"  # use first 10 chars of song title for filename.
     #WrkStr5 = str(SongList[SongStart]).translate(table) #Get the first line of the song
     #os.path.join(os.path.expanduser('~'), 'Songs', NewFileName)
-    file=open(os.path.join(os.path.expanduser('~'), 'Documents\\GitHub\\reformatter\\Songs', NewFileName),"w") # Open a file for output called the truncated name of the song
+    file=open(os.path.join(os.path.expanduser('~'), 'reformatter/Songs', NewFileName),"w") # Open a file for output called the truncated name of the song
     while SongStart+1<len(SongList):  # start at the first in the list, then move forward
         WrkStr1 = str(SongList[SongStart]).translate(table) #first line of text, should be chords above lyrics
         WrkStr2 = str(SongList[SongStart+1]).translate(table) #second line of text, should be lyrics
-        print(WrkStr1,'raw1')
-        print(WrkStr2,'raw2')
+     ###   print(WrkStr1,'raw1')
+    ###   print(WrkStr2,'raw2')
         ChordLineLen = len(WrkStr1.rstrip()) #total length of line with the chord, need this to back from
         LyricLineLen = len(WrkStr2.rstrip()) #need this in the case the lyric line is shorter than the chordline
         if ChordLineLen>LyricLineLen:
@@ -159,10 +159,10 @@ def ReformatterFunc(SongList,WebSongTitle,ChordURL):
             # #chords at the bottom of the page?
              #   file.write('[' + WrkStr1 + ']\n')
               #  SongStart +=2
-            #elif not (any([st in WrkStr1.title() for st in SomeChords]) or any([st in WrkStr2.title() for st in SomeChords])): #  if there are no chords in the first line or second, just write first
-                #file.write(WrkStr1.strip()+'\n')
-                #file.write(WrkStr2.strip() + '\n')
-                #SongStart += 1
+            elif not any([st in WrkStr1.title() for st in SomeChords]) and  WrkStr1.title()==SingleChordLine: #  if there are no chords in the first line just write first line and up the counter 1
+                file.write(WrkStr1.strip()+' ')
+                file.write(WrkStr2.strip() + '\n')
+                SongStart += 2
             else:##Do the insertion of chords into the lyric text
                 print ("Inserting chords into lyrics")
                 y=80 ###This is the last position of a line
@@ -179,8 +179,8 @@ def ReformatterFunc(SongList,WebSongTitle,ChordURL):
                             PartialChord = "" #blank out partial chord for next time
                             WrkStr3 = WrkStr2[:y-1].lstrip()
                             WrkStr4 = WrkStr2[y-1:]
-                            print (WrkStr3+"Wk3"+WrkStr3[(y-1):y])
-                            print (WrkStr4+"Wk4"+WrkStr4[0:1])
+                            ##print (WrkStr3+"Wk3"+WrkStr3[(y-1):y])
+                            ##print (WrkStr4+"Wk4"+WrkStr4[0:1])
                             if (WrkStr3[(y-1):y].isspace()) and (not WrkStr4[0:1].isspace()): # if the rightmost character is blank and the leftmost character is not blank,
                                 WrkStr5= (WrkStr3+"["+FullChord+"] "+WrkStr4) #add a space on the right of the chord
                             elif (not WrkStr3[(y-1):y].isspace()) and (WrkStr4[0:1].isspace()): # if the rightmost character is not blank and the leftmost character is blank,

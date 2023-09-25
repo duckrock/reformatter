@@ -7,3 +7,5 @@ Python
 BeautifulSoup (for webscraping the chords)
 Google API (to write files to drive)
 Requests (to post to Google API easier)
+
+$ pip install html5lib?

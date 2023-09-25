@@ -6,6 +6,7 @@ import os ###for filepath name
 UltimateGuitar = 'https://tabs.ultimate-guitar.com'
 CowboyLyrics = 'https://www.cowboylyrics.com'
 CountryTabs = 'http://www.countrytabs.com'
+eChords = 'https://www.e-chords.com'
 ############################################################
 
 def main():
@@ -52,11 +53,15 @@ def HTMLToTextFunc(ChordURL):#From ChordURL, get text from chord sites and load 
     #if any([st in ChordURL for st in UltimateGuitar]):
     if ChordURL[:32] == UltimateGuitar:
         print ("Calling BeautifulSoup on Ultimate site")
-        SongToReformat = soup.find("textarea", class_="js-tab-textarea ug-no-height").get_text()
+        SongToReformat = soup.script.tab_view.wiki_tab.content
         #SongToReformat = soup.textarea.string
     elif ChordURL[:28] == CowboyLyrics:
-        SongToReformat = soup.pre.string
         print("Calling BeautifulSoup on Cowboy site")
+        SongToReformat = soup.pre.string
+    elif ChordURL[:24] == eChords:
+        print("Calling BeautifulSoup on eChord site")
+        #SongToReformat = soup.find('pre').get_text()
+        SongToReformat = soup.pre.get_text()
     else:
         SongToReformat = "There has been an error or unsupported website, nothing written"
     #print(SongToReformat)
@@ -69,17 +74,15 @@ def HTMLToTextFunc(ChordURL):#From ChordURL, get text from chord sites and load 
 #######################################################
 def FileToLOL(songfile): # Creates the song list of lists from file
     global SongList
-    # Open the file back up and read the contents into a list of lists
     SongList = []  # Instantiate variable SongList as a list
-    fh = open(songfile, "r")
+    fh = open(songfile, "r") # Open the file up and read the contents
     if fh.mode == 'r':  # check to make sure that the file was opened
         for line in fh.readlines():
+            #print(line,'line')
             y = [line.strip('\n')]
             SongList.append(y)  # Load the file contents into a list of lists
-            # SongList.append(line)  # Load the file contents into a list of lists
         fh.close()  # close the file
-
-    SongList = [x for x in SongList if x != ['']]
+    SongList = [x for x in SongList if x != ['']] #to remove null rows in the LOL
 #######################################################
 def ReformatterFunc(SongList,WebSongTitle,ChordURL):
     global NewFileName
@@ -90,7 +93,7 @@ def ReformatterFunc(SongList,WebSongTitle,ChordURL):
     SpecialLine = ['Intro','Verse','Chorus','Refrain','Instrumental','Solo','Verse 1','Verse 2','Verse 3','Outro','Bridge','Fade Finish','Pause...'] #used to check for special song lines
     TitleLine = ['Capo ']
     SomeChords = ['A  ','[A] ','F#m ','G  ','F  ','E  ','Am7  ','C  ','D7  ','E/','A/','G/',
-                  'Am/','G ','C ','Em','Am ','Bm','C ','D ','G ','E ','B7 ','F5','E5','F#5','G5','Bb5','C5'] #used to check for a succession of chords
+                  'Am/','G ','C ','Em ','Am ','Bm','C ','D ','G ','E ','B7 ','F5','E5','F#5','G5','Bb5','C5'] #used to check for a succession of chords
     SingleChordLine = ['A','B','C','D','E','F','G','Am']
     ThrowawayLine = ['---','|-',]
     CapoTitle = "No Capo"
@@ -121,14 +124,13 @@ def ReformatterFunc(SongList,WebSongTitle,ChordURL):
                 CapoTitle = WrkStr2.title()
                 SongStart +=2
             elif any([st in WrkStr1.title() for st in SpecialLine]) or WrkStr1.title()==SingleChordLine:# are you a chorus, verse, etc? or single chord? then just print with brackets
-                file.write('['+WrkStr1.strip()+']'+'\n')
+                file.write('['+WrkStr1.strip()+']\n')
                 SongStart +=1  # advance the line checker
             elif (any([st in WrkStr1 for st in SomeChords]) or  WrkStr1.title()==SingleChordLine) and (any([st in WrkStr2 for st in SomeChords]) or WrkStr2.title()==SingleChordLine): #are you chord(s) on top  more chords? you may be a solo!
                 file.write('[' + WrkStr1.strip() + ']')
                 file.write('[' + WrkStr2.strip() + ']\n')
                 SongStart +=2
-            elif any([st in WrkStr1 for st in SomeChords]) and any([st in WrkStr2.title() for st in SpecialLine]):
-                #print('#are you chords on top of a special line ?')
+            elif any([st in WrkStr1 for st in SomeChords]) and any([st in WrkStr2.title() for st in SpecialLine]): #are you chords on top of a special line ?
                 file.write('[' + WrkStr1.strip() + ']\n')
                 file.write('[' + WrkStr2.strip() + ']\n')
                 #file.write('#are you chords on top of a special line ?')
@@ -143,7 +145,7 @@ def ReformatterFunc(SongList,WebSongTitle,ChordURL):
                 SongStart +=2  # advance the line checker
             elif any([st in WrkStr2 for st in SomeChords]):# If there is chords in stream2
                 file.write('[' + WrkStr2.strip() + ']\n')
-                SongStart +=2  # advance the line checker
+                SongStart +=1  # advance the line checker
             #elif (any([st in WrkStr1 for st in SomeChords]) and WrkStr2.rstrip() == ""): #chords at the bottom of the page?
              #   file.write('[' + WrkStr1 + ']\n')
               #  SongStart +=2
