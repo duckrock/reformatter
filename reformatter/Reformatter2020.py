@@ -1,0 +1,201 @@
+# John Freeman
+# Ingests a file with a song formatted in a common format (chords above lyrics, which regularly relies on autoscrolling
+# as well as fixed width fonts for alignment), and reformat it with the purpose of fitting it on a single full sized iPad screen.
+# The expected output is the song with the chords embedded into the lyrics, in brackets, so that any font can be used
+# and not change the alignment.
+# Originally it could take in a URL from sites such as ultimate guitar and go from there, but UG changed their site and now I have to copy and paste
+# from the site into a file (UnformattedSong.txt).
+# List of Future Features:
+# - Utilize a URL instead of copy/paste
+# - Interface with a Google Docs folder to place the song there, font Ariel 14 pt
+# - Optimize size to make font smaller or larger to fill the entire iPad screen regardless and not page break if possible
+# - Be smarter about syllables when placing chords inside of lyrics (i.e. ....stair[Am]way...(desired) instead of stai[Am]rway (current)
+# - see https://reformatter.wordpress.com/ for more info.
+import os
+from datetime import datetime
+#######################################################
+def main():  ###GetTextInput()
+    FileToLOL('UnformattedSong.txt') # call the function to put the file into a list of lists
+    #FileToLOL('TestSong-Bad Stuff.txt') #debugging song file to make sure we catch corner cases
+    ReformatterFunc(SongList)  # call the main function
+#######################################################
+def FileToLOL(songfile):  # Creates the song list of lists from file
+    global SongList
+    SongList = []  # Instantiate variable SongList as a list
+    fh = open(songfile, "r")  # Open the file up and read the contents
+    if fh.mode == 'r':  # check to make sure that the file was opened
+        for line in fh.readlines():
+            #print(line,'line')
+            y = line.strip('\n').replace("'","**") # take out the newlines, replace apostrophes with ** for later
+            SongList.append(y)  # Load the file contents into a list of lists
+        fh.close()  # close the file
+    SongList = [x for x in SongList if x != ['']]  # to remove null rows in the LOL
+#######################################################
+def ReformatterFunc(SongList):
+    datestamp = datetime.now().strftime("%Y-%b-%d %I:%M %p")  #used for final filename
+    global NewFileName
+    table = str.maketrans(dict.fromkeys('[\'\"]'))  # Create a translate table to remove extraneous python-added list characters like [,],'
+    #########################################################
+    SongStart = 0  # Hardcoded start of the chords line, usually the Lyrics are one line later
+    SpecialLine = ['Intro', 'Verse', 'Chorus', 'Refrain', 'Instrumental', 'Solo', 'Verse 1', 'Verse 2', 'Verse 3',
+                   'Outro', 'Bridge', 'Fade Finish', 'Pause...']  # used to check for special song lines
+    TitleLine = ['Capo ']
+    SomeChords = ['   A','  A ','A  ', '[A] ', 'F#m ', 'G  ', 'F  ', 'E  ', 'Am7  ', 'C  ', 'D7  ', 'E/', 'A/', 'G/',
+                  'Am/', 'G ', 'C ', 'Em ', 'Am ', 'Bm', 'C ', 'D ', 'E ', 'B7 ', 'F5', 'E5', 'F#5', 'G5', 'Bb5',
+                  'C5', 'Am ','E7','G ','   D','Cmaj7','Bb','  Am','   G','   D ', 'C#m','F#','  B ','B ','   C ','C  ','  Em ','Em  ','Asus2','  E ','Bm ','C#m ','F#m ']  # used to check for a succession of chords
+    SingleChordLine = ['A','B','C','D','E','F','G','A', 'B ', 'C ', 'D ', 'E ', 'F ', 'G ', 'Am ', 'Em ', 'A7 ','Am','Cmaj7','Bb','C#m','F#','Asus2','Bm ','C#m','F#m']
+    ThrowawayLine = ['----', '|-']
+    CapoTitle = "No Capo"
+    #print('Songlist ',SongList)  # debug
+    FirstLine = str(SongList[SongStart]).translate(table) #I try to make sure the first line is the song title and artist
+    #print('FirstLine',FirstLine) # debug
+    NewFileName = FirstLine + str(datestamp) + ".txt"  # Timestamp is filename.
+    file = open(os.path.join(os.getcwd()+'/Songs/',NewFileName),"w")
+    ###file = open(os.path.join(os.path.expanduser('~'), 'PycharmProjects/Reformatter/Songs', NewFileName),
+    ###            "w")  # Open a file for output called the truncated name of the song
+    file.write(FirstLine + '\n')
+    while SongStart + 1 < len(SongList):  # start at the first in the list, then move forward
+        WrkStr1 = str(SongList[SongStart]).translate(table)  # first line of text, should be chords above lyrics
+        WrkStr2 = str(SongList[SongStart + 1]).translate(table)  # second line of text, should be lyrics
+        WrkStr1 = WrkStr1.replace("**","'") #put the correct apostrophes back in to both strings after removing python-added ones
+        WrkStr2 = WrkStr2.replace("**","'") #put the correct apostrophes back in to both strings after removing python-added ones
+        if SongStart + 2 < len(SongList):
+            WrkStr3 = str(SongList[SongStart + 2]).translate(table)  # third line of text, used to inspect for long solos
+        #print('raw1',WrkStr1+'---------------------------')
+        #print('raw2',WrkStr2)
+        #print('raw3',WrkStr3)
+        ChordLineLen = len(WrkStr1)  # removed .rstrip() total length of line with the chord, need this to back from
+        #print('ChordLineLen',ChordLineLen) #Debug
+        LyricLineLen = len(WrkStr2.rstrip())  # need this in the case the lyric line is shorter than the chordline
+        #print('LyricLineLen', LyricLineLen)  # Debug
+        if ChordLineLen > LyricLineLen:
+            WrkStr2 = WrkStr2.ljust(ChordLineLen)  # force the lyric line to be as long as the chordline
+        if ChordLineLen<=2:
+            #print('ChordLineLen<=2>')
+            WrkStr1=WrkStr1+'  '
+            #print(WrkStr1)
+        if ChordLineLen > 0:  # must be a nonblank row of text, otherwise go to the next line
+            # Check the first string and second strings and do things, do the double counters first
+            if any([st in WrkStr2.strip() for st in ThrowawayLine]):  # is WrkStr2 a throwaway line? if so, advance.
+                SongStart += 2
+                #print('1')
+            elif any([st in WrkStr2.title() for st in TitleLine]):  # is capo in the second line?
+                CapoTitle = WrkStr2.title()
+                file.write(FirstLine + '[' + WrkStr2.strip() + ']\n')
+                #file.write('[' + WrkStr2.strip() + ']\n')
+                SongStart += 2
+                #print('2')
+            elif (any([st in WrkStr1 for st in SomeChords]) or WrkStr1.title() == SingleChordLine) and (
+                    any([st in WrkStr2 for st in SomeChords]) or WrkStr2.title() == SingleChordLine) and (
+                        any([st in WrkStr3 for st in SomeChords]) or WrkStr3.title() == SingleChordLine) : # are you chord(s) on top more and more chords? you may be a solo!
+                file.write('[' + WrkStr1.strip() + ']')
+                file.write('[' + WrkStr2.strip() + ']\n')
+                SongStart += 2
+                #print('3')
+            elif any([st in WrkStr1 for st in SpecialLine]):  # are you special line, then write you and advance 1?
+                file.write('[' + WrkStr1.strip() + ']\n')
+                # file.write('#are you chords on top of a special line ?')
+                SongStart += 1
+                #print('3a')
+            elif any([st in WrkStr1 for st in SomeChords]) and any(
+                    [st in WrkStr2.title() for st in SpecialLine]):  # are you chords on top of a special line ?
+                file.write('[' + WrkStr1.strip() + ']\n')
+                file.write('[' + WrkStr2.strip() + ']\n')
+                # file.write('#are you chords on top of a special line ?')
+                SongStart += 2
+                #print('4')
+            elif any([st in WrkStr2.title() for st in SpecialLine]): # Is there is a special line in stream2
+                file.write(WrkStr1.title().strip() + '\n')
+                file.write('[' + WrkStr2.title().strip() + ']\n')
+                SongStart += 2  # advance the line checker
+                #print('5')
+            elif any([st in WrkStr1.title() for st in
+                      TitleLine]):  # is capo in the first line, if so, write it and make part of filename?
+                CapoTitle = WrkStr1.title()
+                file.write('[' + WrkStr1.strip() + ']\n')
+                SongStart += 1
+                #print('6')
+            elif any([st in WrkStr1.strip() for st in ThrowawayLine]):  # is first line a throwaway line? advance counter to next line
+                SongStart += 1
+                #print('7')
+            elif any([st in WrkStr2 for st in SomeChords]) and any([st in WrkStr1 for st in SomeChords]):  # If there is chords in WrkStr2 and 1, just print 1 and advance 1
+                file.write('[' + WrkStr1.strip() + ']\n')
+                #file.write('\n')
+                #file.write('[' + WrkStr2.strip() + ']\n')
+                SongStart += 1  # advance the line checker
+                #print('8')
+            elif any([st in WrkStr2 for st in SomeChords]): # If there is chords in just WrkStr2, just print 1 and advance 1 w/no brackets
+                file.write(WrkStr1.strip() + '\n')
+                #file.write('\n')
+                #file.write('[' + WrkStr2.strip() + ']\n')
+                SongStart += 1  # advance the line checker
+                #print('8')
+            elif (any([st in WrkStr1.title() for st in SpecialLine]) or WrkStr1.title()==SingleChordLine):
+                # are you a chorus, verse, etc? or single chord? then just print with brackets
+                file.write('[' + WrkStr1.strip() + ']\n')
+                SongStart += 1  # advance the line checker
+                #print('9')
+            elif any([st in WrkStr1.title() for st in SpecialLine]):  # you are a special line on line 1, just print
+                file.write(WrkStr1.strip() + '\n')  # If there is a title, add it to the file first.
+                # file.write(WrkStr2.strip() + '\n')
+                SongStart += 1  # advance the line checker
+            # elif (any([st in WrkStr1 for st in SomeChords]) and WrkStr2.rstrip() == ""):
+            # #chords at the bottom of the page?
+            #   file.write('[' + WrkStr1 + ']\n')
+            #  SongStart +=2
+                #print('10')
+            elif not any([st in WrkStr1.title() for st in SomeChords]) and WrkStr1.title()!=SingleChordLine:
+                # if there are no chords in the first line nor is it a single chord line just write first line and up the counter 1
+                file.write(WrkStr1.strip() + '\n')
+                #file.write(WrkStr2.strip() + '\n')
+                SongStart += 1
+                #print('11')
+                #print(WrkStr1.title())
+            else:  ##Do the insertion of chords into the lyric text
+                #print("Inserting chords into lyrics")
+                y = 80  ###This is the last position of a line
+                PartialChord = ""
+                while y > 1:  # keep going until you get to the leftmost position of the line
+                    for x in range(0, ChordLineLen):  # x is 0 to 30
+                        y = (ChordLineLen - x)  # y is starting at the right side
+                        z = str(WrkStr1[(y - 1):y])  # z is the rightmost chord character, position 29:30
+                        if not z.isspace():  # if the rightmost character is not blank, build the chord
+                            PartialChord = (z + PartialChord)  # add the characters together
+                        elif PartialChord != "":  # now we have hit whitespace,
+                            # check if we have a partial chord or if we hit the beginning of the line (pos 1)
+                            FullChord = PartialChord  # Finalize rightmost full chord such as B7 or Bsus4
+                            PartialChord = ""  # blank out partial chord for next time
+                            WrkStr3 = WrkStr2[:y - 1].lstrip()
+                            WrkStr4 = WrkStr2[y - 1:]
+                            #print(WrkStr3 + "Wk3" + WrkStr3[(y - 1):y])
+                            #print(WrkStr4 + "Wk4" + WrkStr4[0:1])
+                            if (WrkStr3[(y - 1):y].isspace()) and (not WrkStr4[
+                                                                       0:1].isspace()):  # if the rightmost character is blank and the leftmost character is not blank,
+                                WrkStr5 = (
+                                            WrkStr3 + "[" + FullChord + "] " + WrkStr4)  # add a space on the right of the chord
+                            elif (not WrkStr3[(y - 1):y].isspace()) and (WrkStr4[
+                                                                         0:1].isspace()):  # if the rightmost character is not blank and the leftmost character is blank,
+                                WrkStr5 = (
+                                            WrkStr3 + " [" + FullChord + "]" + WrkStr4)  # add a space on the left of the chord
+                            else:  # it is in the middle of a word (nonblank spaces on either side)
+                                WrkStr5 = (WrkStr3 + "[" + FullChord + "]" + WrkStr4)
+                            break
+                        if PartialChord != "" and y == 1:
+                            FullChord = PartialChord  # Finalize rightmost full chord such as B7 or Bsus4
+                            PartialChord = ""  # blank out partial chord for next time
+                            WrkStr3 = WrkStr2[:y - 1].lstrip()
+                            WrkStr4 = WrkStr2[y - 1:]
+                            WrkStr5 = (WrkStr3 + "[" + FullChord + "] " + WrkStr4)
+                            break
+                    WrkStr1 = WrkStr1[:y]  # new chord string w/o the rightmost chord, stopping just there
+                    WrkStr2 = WrkStr5  # new lyric string with the rightmost chord(s) now embedded
+                # print (WrkStr5)
+                file.write(WrkStr5 + '\n')
+                SongStart += 2
+                #print('12')
+        else:
+            SongStart += 1
+            #print('13')
+    file.close()
+#######################################################
+if __name__ == "__main__": main()
